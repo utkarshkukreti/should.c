@@ -1,4 +1,4 @@
-# should.c
+# should.c [![Build Status](https://travis-ci.org/utkarshkukreti/should.c.png)](https://travis-ci.org/utkarshkukreti/should.c)
 
 should.c is a mini testing framework for C, which also happens to be pretty.
 
