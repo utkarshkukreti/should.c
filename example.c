@@ -40,6 +40,22 @@ int main() {
             }
         }
 
+        should_h2("should_eq() and should_not_eq()");
+        {
+            // should_eq and should_not_eq checks if the 2 passed integers are
+            // equal or not equal respectively.
+            should_eq(10, 10);
+            should_eq(1 + 3, 2 + 2);
+
+            should_not_eq(2 * 7, 2 + 7);
+
+            should_h3("These should fail");
+            {
+                should_eq(2 + 3, 2 - 3);
+                should_not_eq(2 * 2, 2 + 2);
+            }
+        }
+
         should_h2("should_passed_count(), should_failed_count()");
         {
             // should_passed_count() returns the number of passed assertions

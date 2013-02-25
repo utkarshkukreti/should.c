@@ -51,6 +51,26 @@ int current_indent_level = 0;
     } \
 } while(0);
 
+#define should_eq(lhs, rhs) do { \
+    int lhs_result = (lhs), rhs_result = (rhs); \
+    if(lhs == rhs) { \
+        __should_passed("%s should be equal to %s", #lhs, #rhs); \
+    } else { \
+        __should_failed("Expected %s to be equal to %s, but %d != %d", \
+                         #lhs, #rhs, lhs_result, rhs_result); \
+    } \
+} while(0);
+
+#define should_not_eq(lhs, rhs) do { \
+    int lhs_result = (lhs), rhs_result = (rhs); \
+    if(lhs != rhs) { \
+        __should_passed("%s should not be equal to %s", #lhs, #rhs); \
+    } else { \
+        __should_failed("Expected %s to not be equal to %s, but %d == %d", \
+                         #lhs, #rhs, lhs_result, rhs_result); \
+    } \
+} while(0);
+
 // Macros for internal use.
 #define __should_passed(format, ...) do { \
     passed++; \
