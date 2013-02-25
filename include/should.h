@@ -117,11 +117,12 @@ int should_failed_count() {
 }
 
 void should_print_stats() {
-    printf("\n%s   %s  %d assertions, %d failures.\n",
+    printf("\n%s   %s  %d assertions, %d failures.%s\n",
             failed ? red : green,
             failed ? cross : tick,
             passed + failed,
-            failed);
+            failed,
+            end);
 }
 
 static void indent(int count) {
