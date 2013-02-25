@@ -53,18 +53,20 @@ int current_indent_level = 0;
 #define should(expr) do { \
     int result = (expr); \
     if(result) { \
-        __should_passed("%s should be truthy, and it's %d", #expr, result); \
+        __should_passed("%s should be truthy", #expr); \
     } else { \
-        __should_failed("%s should be truthy, but it's %d", #expr, result); \
+        __should_failed("Expected %s to be truthy, but it's %d", \
+                         #expr, result); \
     } \
 } while(0);
 
 #define should_not(expr) do { \
     int result = (expr); \
     if(result) { \
-        __should_failed("%s should be falsy, but it's %d", #expr, result); \
+        __should_failed("Expected %s to be falsy, but it's %d", \
+                         #expr, result); \
     } else { \
-        __should_passed("%s should be falsy, and it's %d", #expr, result); \
+        __should_passed("%s should be falsy", #expr); \
     } \
 } while(0);
 
