@@ -16,7 +16,7 @@ void should_print_stats();
 static void indent(int count);
 
 // For stats.
-static int passed = 0, failed = 0;
+static int passed_count = 0, failed_count = 0;
 
 // For pretty output.
 static const char *tick = "\u2713",
@@ -73,7 +73,7 @@ int current_indent_level = 0;
 
 // Macros for internal use.
 #define __should_passed(format, ...) do { \
-    passed++; \
+    passed_count++; \
     indent(current_indent_level); \
     fprintf(stdout, "%s%s  ", green, tick); \
     fprintf(stdout, format, __VA_ARGS__); \
@@ -82,7 +82,7 @@ int current_indent_level = 0;
 } while(0);
 
 #define __should_failed(format, ...) do { \
-    failed++; \
+    failed_count++; \
     indent(current_indent_level); \
     fprintf(stdout, "%s%s  ", red, cross); \
     fprintf(stdout, format, __VA_ARGS__); \
@@ -109,19 +109,19 @@ void should_h3(char *message) {
 }
 
 int should_passed_count() {
-    return passed;
+    return passed_count;
 }
 
 int should_failed_count() {
-    return failed;
+    return failed_count;
 }
 
 void should_print_stats() {
     printf("\n%s   %s  %d assertions, %d failures.%s\n",
-            failed ? red : green,
-            failed ? cross : tick,
-            passed + failed,
-            failed,
+            failed_count ? red : green,
+            failed_count ? cross : tick,
+            passed_count + failed_count,
+            failed_count,
             end);
 }
 
