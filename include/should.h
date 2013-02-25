@@ -16,7 +16,7 @@ void should_print_stats();
 static void indent(int count);
 
 // For stats.
-int passed = 0, failed = 0;
+static int passed = 0, failed = 0;
 
 // For pretty output.
 static const char *tick = "\u2713",
