@@ -33,25 +33,24 @@ int current_indent_level = 0;
 // Macros for external use.
 #define should(expr) do { \
     int result = (expr); \
-    if(result) { \
-        __should_passed("%s should be truthy", #expr); \
-    } else { \
-        __should_failed("Expected %s to be truthy, but it's %d", \
-                         #expr, result); \
-    } \
+    __should(result, expr, result, "truthy"); \
 } while(0);
 
 #define should_not(expr) do { \
     int result = (expr); \
-    if(result) { \
-        __should_failed("Expected %s to be falsy, but it's %d", \
-                         #expr, result); \
-    } else { \
-        __should_passed("%s should be falsy", #expr); \
-    } \
+    __should(!result, expr, result, "falsy"); \
 } while(0);
 
 // Macros for internal use.
+#define __should(result, expr, actual, relation) do { \
+    if(result) { \
+        __should_passed("%s should be %s", #expr, relation); \
+    } else { \
+        __should_failed("Expected %s to be %s, but it's %d", \
+                         #expr, relation, actual); \
+    } \
+} while(0);
+
 #define __should_passed(format, ...) do { \
     passed++; \
     indent(current_indent_level); \
