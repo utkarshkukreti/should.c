@@ -30,25 +30,6 @@ static const char *red = "\x1b[31m",
 
 int current_indent_level = 0;
 
-// Macros for internal use.
-#define __should_passed(format, ...) do { \
-    passed++; \
-    indent(current_indent_level); \
-    fprintf(stdout, "%s%s  ", green, tick); \
-    fprintf(stdout, format, __VA_ARGS__); \
-    fprintf(stdout, "\n"); \
-    printf("%s", end); \
-} while(0);
-
-#define __should_failed(format, ...) do { \
-    failed++; \
-    indent(current_indent_level); \
-    fprintf(stdout, "%s%s  ", red, cross); \
-    fprintf(stdout, format, __VA_ARGS__); \
-    fprintf(stdout, " (on line %d in file %s)\n", __LINE__, __FILE__); \
-    printf("%s", end); \
-} while(0);
-
 // Macros for external use.
 #define should(expr) do { \
     int result = (expr); \
@@ -68,6 +49,25 @@ int current_indent_level = 0;
     } else { \
         __should_passed("%s should be falsy", #expr); \
     } \
+} while(0);
+
+// Macros for internal use.
+#define __should_passed(format, ...) do { \
+    passed++; \
+    indent(current_indent_level); \
+    fprintf(stdout, "%s%s  ", green, tick); \
+    fprintf(stdout, format, __VA_ARGS__); \
+    fprintf(stdout, "\n"); \
+    printf("%s", end); \
+} while(0);
+
+#define __should_failed(format, ...) do { \
+    failed++; \
+    indent(current_indent_level); \
+    fprintf(stdout, "%s%s  ", red, cross); \
+    fprintf(stdout, format, __VA_ARGS__); \
+    fprintf(stdout, " (on line %d in file %s)\n", __LINE__, __FILE__); \
+    printf("%s", end); \
 } while(0);
 
 void should_h(int level, char *message) {
