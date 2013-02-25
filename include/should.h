@@ -9,6 +9,7 @@ void should_h1(char *);
 void should_h2(char *);
 void should_h3(char *);
 int should_failed_count();
+int should_passed_count();
 void should_print_stats();
 
 // Internal function for handling indentation.
@@ -87,6 +88,10 @@ void should_h3(char *message) {
 
 int should_failed_count() {
     return failed;
+}
+
+int should_passed_count() {
+    return passed;
 }
 
 void should_print_stats() {

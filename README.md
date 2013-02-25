@@ -59,8 +59,11 @@ int main() {
             }
         }
 
-        should_h2("should_failed_count()");
+        should_h2("should_passed_count(), should_failed_count()");
         {
+            // should_passed_count() returns the number of passed assertions
+            // till now.
+            should(should_passed_count() > 5);
             // should_failed_count() returns the number of assertion failures
             // till now.
             // We know we've made atleast 1 test fail.
