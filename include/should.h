@@ -86,7 +86,7 @@ int current_indent_level = 0;
     indent(current_indent_level); \
     fprintf(stdout, "%s%s  ", red, cross); \
     fprintf(stdout, format, __VA_ARGS__); \
-    fprintf(stdout, " (on line %d in file %s)\n", __LINE__, __FILE__); \
+    fprintf(stdout, " (%s:%d)\n", __FILE__, __LINE__); \
     printf("%s", end); \
 } while(0);
 
