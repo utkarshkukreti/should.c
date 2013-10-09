@@ -1,5 +1,5 @@
 language: c
-script: scons && bin/example
+script: make example
 compiler:
   - clang
   - gcc
